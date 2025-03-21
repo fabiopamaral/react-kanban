@@ -10,8 +10,38 @@ import {
   TextArea,
   TextField,
 } from "@radix-ui/themes";
+import { FormEventHandler } from "react";
+import { z } from "zod";
+
+const CreateTaskSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  status: z.enum(["todo", "doing", "done"]),
+  priority: z.enum(["low", "medium", "high"]),
+});
 
 function CreateTaskForm() {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (ev) => {
+    ev.preventDefault();
+
+    const formData = new FormData(ev.currentTarget);
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const status = formData.get("status");
+    const priority = formData.get("priority");
+
+    ev.currentTarget.reset();
+
+    const taskData = CreateTaskSchema.parse({
+      title,
+      description,
+      status,
+      priority,
+    });
+
+    alert(JSON.stringify(taskData));
+  };
+
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -26,7 +56,7 @@ function CreateTaskForm() {
           Adicione novas tarefas ao quadro.
         </Dialog.Description>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <Flex direction="column" gap="4">
             <Box maxWidth="32rem">
               <Box mb="2">
@@ -78,7 +108,7 @@ function CreateTaskForm() {
               </Box>
               <Box>
                 <Text as="div" mb="2">
-                  Situação
+                  Prioridade
                 </Text>
                 <RadioGroup.Root name="priority" defaultValue="low">
                   <RadioGroup.Item value="low">
