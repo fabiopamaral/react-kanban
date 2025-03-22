@@ -25,15 +25,8 @@
       "id": "4",
       "title": "Implementar testes",
       "description": "Desenvolver os testes automatizados na nova funcionalidade do aplicativo.",
-      "status": "todo",
+      "status": "doing",
       "priority": "medium"
-    },
-    {
-      "id": "c577",
-      "title": "Jogar Doom",
-      "description": "Play Doom Eternal",
-      "status": "todo",
-      "priority": "low"
     }
   ]
 }
