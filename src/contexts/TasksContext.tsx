@@ -28,10 +28,8 @@ export const TasksContextProvider = ({
   }, []);
 
   const createTask = async (attributes: Omit<Task, "id">) => {
-    setTasks((currentState) => {
-      const updatedTasks = [...currentState, { id: 823, ...attributes }];
-      return updatedTasks;
-    });
+    const newTask = await TaskService.createTask(attributes);
+    setTasks((currentState) => [...currentState, newTask]);
   };
 
   const updateTask = async (
