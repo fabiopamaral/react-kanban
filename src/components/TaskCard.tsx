@@ -66,11 +66,19 @@ function TaskCard({ task }: TaskCardProps) {
 
       <Flex gap={"2"}>
         {task.status !== "done" && (
-          <Button color={getActionColor(task.status)} onClick={handleUpdate}>
+          <Button
+            color={getActionColor(task.status)}
+            onClick={handleUpdate}
+            style={{ cursor: "pointer" }}
+          >
             {getActionText(task.status)}
           </Button>
         )}
-        <Button color="red" onClick={() => handleDelete(task.id)}>
+        <Button
+          color="red"
+          onClick={() => handleDelete(task.id)}
+          style={{ cursor: "pointer" }}
+        >
           Excluir
         </Button>
       </Flex>

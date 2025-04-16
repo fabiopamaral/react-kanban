@@ -48,7 +48,7 @@ function CreateTaskForm() {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Button>
+        <Button style={{ cursor: "pointer" }}>
           <PlusIcon /> Nova tarefa
         </Button>
       </Dialog.Trigger>
